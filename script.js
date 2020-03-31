@@ -12,6 +12,22 @@
 <img src="${}">
 */
 window.addEventListener("load", function() {
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+      response.json().then(function(json){
+         const target = document.getElementById("missionTarget");
+         target.innerHTML = `
+         <h2>Mission Destination</h2>
+         <ol>
+            <li>Name: ${json[2].name}</li>
+            <li>Diameter: ${json[2].diameter}</li>
+            <li>Star: ${json[2].star}</li>
+            <li>Distance from Earth: ${json[2].distance}</li>
+            <li>Number of Moons: ${json[2].moons}</li>
+         </ol>
+         <img src="${json[2].image}">`;
+      });
+   });
+      
    let launchForm = document.getElementById("launchForm");
    launchForm.addEventListener("submit", function(event) {
       let pilotName = document.querySelector("input[name=pilotName]");
